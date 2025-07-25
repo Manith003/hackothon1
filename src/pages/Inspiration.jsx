@@ -1,36 +1,31 @@
 import { useState } from "react";
 import { Heart, Bookmark, Share2 } from "lucide-react";
 
-// Updated mood data for the monochrome theme
+// Reverted to the vibrant, colorful theme for each mood
 const moods = [
   {
     name: "All",
-    bgClass: "bg-gray-900",
-    textClass: "text-white",
+    color: "from-rose-500 to-amber-500",
     description: "View all curated looks and find your inspiration",
   },
   {
     name: "Bold",
-    bgClass: "bg-gray-800",
-    textClass: "text-white",
+    color: "from-red-500 to-pink-500",
     description: "Make a statement with fearless fashion choices",
   },
   {
     name: "Romantic",
-    bgClass: "bg-gray-100",
-    textClass: "text-gray-800",
+    color: "from-pink-400 to-rose-400",
     description: "Soft, feminine looks that capture hearts",
   },
   {
     name: "Street",
-    bgClass: "bg-gray-500",
-    textClass: "text-white",
+    color: "from-slate-600 to-gray-800",
     description: "Urban edge meets comfortable style",
   },
   {
     name: "Festive",
-    bgClass: "bg-white",
-    textClass: "text-gray-900",
+    color: "from-amber-500 to-orange-500",
     description: "Celebration-ready outfits that shine",
   },
 ];
@@ -41,7 +36,7 @@ const looks = [
     title: "Power Blazer Moment",
     mood: "Bold",
     description: "Oversized blazer with statement accessories",
-    image: "/placeholder.svg?height=400&width=300&query=blazer",
+    image: "https://i.pinimg.com/1200x/c7/14/2a/c7142a8f496f7f624bcfd9c8c515b2c7.jpg",
     likes: 1247,
     saves: 89,
   },
@@ -50,7 +45,7 @@ const looks = [
     title: "Dreamy Pastels",
     mood: "Romantic",
     description: "Soft pink dress with delicate jewelry",
-    image: "/placeholder.svg?height=400&width=300&query=dress",
+    image: "https://i.pinimg.com/1200x/20/3d/f5/203df54bd43d47854918d56d431bc401.jpg",
     likes: 892,
     saves: 156,
   },
@@ -59,7 +54,7 @@ const looks = [
     title: "Urban Explorer",
     mood: "Street",
     description: "Cargo pants with cropped jacket",
-    image: "/placeholder.svg?height=400&width=300&query=streetwear",
+    image: "https://i.pinimg.com/1200x/02/ff/a1/02ffa1833b5a6018d7c71ce852cbecd5.jpg",
     likes: 2103,
     saves: 234,
   },
@@ -68,7 +63,7 @@ const looks = [
     title: "Golden Hour Glam",
     mood: "Festive",
     description: "Sequined top with flowing palazzo",
-    image: "/placeholder.svg?height=400&width=300&query=sequins",
+    image: "https://i.pinimg.com/736x/8d/ce/df/8dcedf24ab8f8a449cf2fd4bc01c0888.jpg",
     likes: 1567,
     saves: 298,
   },
@@ -77,7 +72,7 @@ const looks = [
     title: "Neon Dreams",
     mood: "Bold",
     description: "Bright neon co-ord set",
-    image: "/placeholder.svg?height=400&width=300&query=neon",
+    image: "https://i.pinimg.com/1200x/df/27/79/df277972f494673cfd212893bfcd76ae.jpg",
     likes: 934,
     saves: 67,
   },
@@ -86,7 +81,7 @@ const looks = [
     title: "Floral Fantasy",
     mood: "Romantic",
     description: "Flowing floral maxi dress",
-    image: "/placeholder.svg?height=400&width=300&query=floral",
+    image: "https://i.pinimg.com/1200x/c7/80/24/c78024befe5b875999dbac842a955b6d.jpg",
     likes: 1789,
     saves: 445,
   },
@@ -95,7 +90,7 @@ const looks = [
     title: "Denim on Denim",
     mood: "Street",
     description: "Double denim with modern twist",
-    image: "/placeholder.svg?height=400&width=300&query=denim",
+    image: "https://i.pinimg.com/1200x/82/9b/30/829b30808907fcc5abb533c0a3a5df52.jpg",
     likes: 1456,
     saves: 178,
   },
@@ -104,7 +99,7 @@ const looks = [
     title: "Saree Reimagined",
     mood: "Festive",
     description: "Contemporary saree styling",
-    image: "/placeholder.svg?height=400&width=300&query=saree+style",
+    image: "https://i.pinimg.com/1200x/47/be/86/47be868c94ed14e7c9371b318761e8ad.jpg",
     likes: 2890,
     saves: 567,
   },
@@ -119,13 +114,15 @@ export default function InspirationPage() {
       : looks.filter((look) => look.mood === activeMood);
 
   return (
-    <div className="min-h-screen bg-gray-100 py-20 font-sans">
+    <div className="min-h-screen bg-[#F3F4F6] py-20 font-sans mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
             <span className="font-serif italic text-gray-500">Style</span>{" "}
-            Inspiration
+            <span>
+              Inspiration
+            </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Discover looks curated by mood and occasion. Find your style story
@@ -135,46 +132,29 @@ export default function InspirationPage() {
 
         {/* Mood Categories */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
-          {moods.map((mood) => {
-            const moodStyle = moods.find((m) => m.name === mood.name);
-            return (
-              <button
-                key={mood.name}
-                onClick={() => setActiveMood(mood.name)}
-                className={`group rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border ${
-                  activeMood === mood.name
-                    ? "border-gray-900 ring-2 ring-gray-900 ring-offset-2"
-                    : "border-gray-200/80"
-                } ${moodStyle.bgClass}`}
-              >
-                <div className="h-32 relative flex flex-col justify-end p-4">
-                  <div
-                    className={`absolute inset-0 ${
-                      mood.name === "Festive" ? "bg-black/5" : "bg-black/20"
-                    } group-hover:bg-black/10 transition-colors`}
-                  />
-                  <div className="relative">
-                    <h3 className={`text-2xl font-bold ${moodStyle.textClass}`}>
-                      {mood.name}
-                    </h3>
-                  </div>
+          {moods.map((mood) => (
+            <button
+              key={mood.name}
+              onClick={() => setActiveMood(mood.name)}
+              className={`group rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden text-white bg-gradient-to-br ${
+                mood.color
+              } ${
+                activeMood === mood.name
+                  ? "ring-2 ring-rose-500 ring-offset-4"
+                  : ""
+              }`}
+            >
+              <div className="h-32 relative flex flex-col justify-end p-4">
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="relative">
+                  <h3 className="text-2xl font-bold">{mood.name}</h3>
                 </div>
-                <div className={`p-4 text-left ${moodStyle.bgClass}`}>
-                  <p
-                    className={`${
-                      mood.name === "Festive"
-                        ? "text-gray-600"
-                        : mood.name === "Romantic"
-                        ? "text-gray-600"
-                        : "text-gray-400"
-                    } text-sm`}
-                  >
-                    {mood.description}
-                  </p>
-                </div>
-              </button>
-            );
-          })}
+              </div>
+              <div className="p-4 text-left bg-black/10">
+                <p className="text-sm text-white/80">{mood.description}</p>
+              </div>
+            </button>
+          ))}
         </div>
 
         {/* Looks Grid */}
@@ -193,15 +173,8 @@ export default function InspirationPage() {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute top-3 left-3">
-                    {/* FIX: Changed mood.name to look.mood */}
                     <span
-                      className={`inline-block rounded-full px-3 py-1 text-xs font-semibold border ${
-                        moodStyle.bgClass
-                      } ${moodStyle.textClass} ${
-                        look.mood === "Festive"
-                          ? "border-gray-200"
-                          : "border-transparent"
-                      }`}
+                      className={`inline-block rounded-full px-3 py-1 text-xs font-semibold text-white bg-gradient-to-r ${moodStyle.color}`}
                     >
                       {look.mood}
                     </span>
@@ -249,16 +222,16 @@ export default function InspirationPage() {
 
         {/* CTA Section */}
         <div className="text-center mt-20">
-          <div className="bg-gray-900 text-white rounded-xl shadow-2xl">
+          <div className="bg-neutral-900 text-white rounded-xl shadow-2xl">
             <div className="p-12">
               <h2 className="text-3xl font-bold mb-4">
                 Get Personalized Style Inspiration
               </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-rose-100 mb-8 max-w-2xl mx-auto">
                 Book a Closet Therapy session and discover looks curated just
                 for you.
               </p>
-              <button className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-lg font-semibold bg-white text-gray-900 hover:bg-gray-200 transition-colors shadow-lg">
+              <button className="inline-flex items-center justify-center rounded-lg px-8 py-3 text-lg font-semibold bg-white text-black hover:bg-rose-50 transition-colors shadow-lg">
                 Book Your Session
               </button>
             </div>

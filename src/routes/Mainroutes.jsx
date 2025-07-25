@@ -1,15 +1,13 @@
 
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Firstpage from '../pages/FirstPage'
-import Footer from '../components/Footer'
 import Products from '../pages/Product' 
 import ProductDetailPage from '../pages/ProductDetail'
 import Inspiration from '../pages/Inspiration'
 import About from '../pages/About'
-
 
 const HomePage = () => {
   return (
@@ -21,6 +19,8 @@ const HomePage = () => {
 }
 
 const Mainroutes = () => {
+
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

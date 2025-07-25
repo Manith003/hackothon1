@@ -14,7 +14,6 @@ function App() {
     <div className="App h-full w-full">
       <Nav />
       <Mainroutes />
-      
       <Footer />
     </div>
   );

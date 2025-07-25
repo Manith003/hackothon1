@@ -19,7 +19,7 @@ const products = [
     price: "₹999",
     category: "services",
     icon: <Palette className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=300&width=400&query=fashion+styling",
+    image: "https://i.pinimg.com/736x/a7/50/4a/a7504aa3bf74cb5551ab8fa18bce1bb2.jpg",
     cta: "Book Now",
     popular: true,
   },
@@ -31,7 +31,7 @@ const products = [
     price: "₹199",
     category: "digital",
     icon: <Download className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=300&width=400&query=fashion+lookbook",
+    image: "https://i.pinimg.com/1200x/38/cb/48/38cb487f94a404eb88462611e6728c84.jpg",
     cta: "Download",
   },
   {
@@ -42,7 +42,7 @@ const products = [
     price: "₹1,499",
     category: "courses",
     icon: <BookOpen className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=300&width=400&query=fashion+course",
+    image: "https://i.pinimg.com/1200x/9d/d3/6d/9dd36d1cbdcb63d839e0c6e0e17bb9de.jpg",
     cta: "Enroll",
     popular: true,
   },
@@ -54,7 +54,7 @@ const products = [
     price: "₹3,499",
     category: "merch",
     icon: <ShoppingBag className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=300&width=400&query=saree",
+    image: "https://i.pinimg.com/1200x/2f/63/63/2f636346be57b78e1d72cf999724310e.jpg",
     cta: "Buy Now",
   },
   {
@@ -65,7 +65,7 @@ const products = [
     price: "₹1,299",
     category: "beauty",
     icon: <Star className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=300&width=400&query=beauty+kit",
+    image: "https://i.pinimg.com/736x/31/83/8c/31838cb23d054565fdffdfb7d2c75759.jpg",
     cta: "Shop Now",
   },
   {
@@ -76,7 +76,7 @@ const products = [
     price: "₹2,499",
     category: "services",
     icon: <Palette className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=300&width=400&query=personal+shopping",
+    image: "https://i.pinimg.com/736x/6f/9c/3b/6f9c3b36813b924d337076424a293a81.jpg",
     cta: "Book Now",
   },
 ];
@@ -101,16 +101,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <button
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors group"
-          >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm font-medium">Back</span>
-          </button>
-        </div>
+      <div className="max-w-7xl mt-10 mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">

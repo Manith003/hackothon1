@@ -23,7 +23,7 @@ const allProducts = [
     price: "₹999",
     category: "services",
     icon: <Palette className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=600&width=800&query=closet+organization",
+    image: "https://i.pinimg.com/736x/a7/50/4a/a7504aa3bf74cb5551ab8fa18bce1bb2.jpg",
     cta: "Book a Session",
     popular: true,
     rating: 4.9,
@@ -59,7 +59,7 @@ const allProducts = [
     price: "₹199",
     category: "digital",
     icon: <Download className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=600&width=800&query=fashion+magazine",
+    image: "https://i.pinimg.com/1200x/38/cb/48/38cb487f94a404eb88462611e6728c84.jpg",
     cta: "Download Now",
     popular: false,
     rating: 4.8,
@@ -94,7 +94,7 @@ const allProducts = [
     price: "₹1,499",
     category: "courses",
     description: "Learn how to express power and elegance through every look — from boardroom to brunch.",
-    image: "/placeholder.svg?height=600&width=800&query=power+dressing",
+    image: "https://i.pinimg.com/1200x/9d/d3/6d/9dd36d1cbdcb63d839e0c6e0e17bb9de.jpg",
     cta: "Enroll Now",
     popular: true,
     icon: <BookOpen className="h-5 w-5 text-gray-500" />,
@@ -131,7 +131,7 @@ const allProducts = [
     price: "₹3,499",
     category: "merch",
     icon: <ShoppingBag className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=600&width=800&query=designer+saree",
+    image: "https://i.pinimg.com/1200x/2f/63/63/2f636346be57b78e1d72cf999724310e.jpg",
     cta: "Shop the Collection",
     popular: false,
     rating: 4.9,
@@ -167,7 +167,7 @@ const allProducts = [
     price: "₹1,299",
     category: "beauty",
     icon: <Star className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=600&width=800&query=makeup+kit",
+    image: "https://i.pinimg.com/736x/31/83/8c/31838cb23d054565fdffdfb7d2c75759.jpg",
     cta: "Shop the Kit",
     popular: true,
     rating: 4.8,
@@ -203,7 +203,7 @@ const allProducts = [
     price: "₹2,499",
     category: "services",
     icon: <Palette className="h-5 w-5 text-gray-500" />,
-    image: "/placeholder.svg?height=600&width=800&query=luxury+shopping",
+    image: "https://i.pinimg.com/736x/6f/9c/3b/6f9c3b36813b924d337076424a293a81.jpg",
     cta: "Enquire Now",
     popular: false,
     rating: 5.0,
@@ -260,7 +260,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-20">
+    <div className="min-h-screen bg-gray-100 py-20 mt-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="mb-8">
@@ -304,7 +304,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative h-[74%] overflow-hidden rounded-2xl shadow-lg">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={product.image || "/placeholder.svg"}

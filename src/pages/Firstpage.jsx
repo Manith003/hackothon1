@@ -26,7 +26,7 @@ export default function HomePage() {
                   <h3 className="font-bold text-xl text-gray-900">Instagram Feed</h3>
                 </div>
                 <div className="grid grid-cols-2 gap-3 mb-5">
-                  {["https://i.pinimg.com/736x/37/6f/07/376f079406a7120dfcb4fefe299f5486.jpg", "https://i.pinimg.com/1200x/6f/66/4d/6f664d9823370ec637dcc51aebb52a3e.jpg", "https://i.pinimg.com/1200x/4b/03/a8/4b03a811baad8397ececa8cfb1aaf0cd.jpg", "https://i.pinimg.com/1200x/7e/68/86/7e6886e119e95de6c3bab9c2c7043f70.jpg"].map((i) => (
+                  {["https://i.pinimg.com/736x/37/6f/07/376f079406a7120dfcb4fefe299f5486.jpg", "https://i.pinimg.com/1200x/6f/66/4d/6f664d9823370ec637dcc51aebb52a3e.jpg", "https://i.pinimg.com/1200x/4b/03/a8/4b03a811baad8397ececa8cfb1aaf0cd.jpg", "https://i.pinimg.com/736x/35/24/c3/3524c3f3632ae65decc3573735149353.jpg"].map((i) => (
                     <div key={i} className="aspect-square bg-gray-100 rounded-lg overflow-hidden group/image">
                       <img
                         src={`${i}`}
