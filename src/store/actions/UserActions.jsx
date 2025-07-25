@@ -1,45 +1,64 @@
-import axios from "../../api/Axiosconfig";
 import { loaduser, removeuser } from "../reducers/UserSlice";
+import { nanoid } from "@reduxjs/toolkit";
 
-export const asynccurrentuser = () => async (dispatch, getState) => {
+
+export const asyncregisteruser = (userData) => (dispatch) => {
   try {
-    const logedinUser = JSON.parse(localStorage.getItem("userToken")) || "";
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (logedinUser) {
-      dispatch(loaduser(logedinUser));
+    const userExists = users.find((user) => user.username
+ === userData.username
+);
+    if (userExists) {
+      console.log("User with this email already exists.");
+      return;
+    }
+
+    const newUser = { id: nanoid(), ...userData };
+    users.push(newUser);
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    const { password, ...userToStore } = newUser;
+    localStorage.setItem("userToken", JSON.stringify(userToStore));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const asyncloginuser = (credentials) => (dispatch) => {
+  try {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find((user) => user.username === credentials.username);
+
+    if (user && user.password === credentials.password) {
+      const { password, ...userToStore } = user;
+      localStorage.setItem("userToken", JSON.stringify(userToStore));
+      dispatch(loaduser(userToStore));
     } else {
-      console.log("No user logged in");
+      console.log("Invalid email or password");
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const asynclogoutuser = () => async (dispatch, getState) => {
+export const asynccurrentuser = () => (dispatch) => {
+  try {
+    const userToken = localStorage.getItem("userToken");
+    if (userToken) {
+      dispatch(loaduser(JSON.parse(userToken)));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const asynclogoutuser = () => (dispatch) => {
   try {
     localStorage.removeItem("userToken");
     dispatch(removeuser());
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const asyncloginuser  = (userData) => async (dispatch, getState) => {
-  try {
-    const { data } = await axios.get(
-      `/users?username=${userData.username}&password=${userData.password}`
-    );
-    console.log(data[0]);
-    localStorage.setItem("userToken", JSON.stringify(data[0]));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const asyncregisteruser = (userData) => async (dispatch, getState) => {
-  try {
-    const res = await axios.post("/users", userData);
-    console.log(res);
   } catch (error) {
     console.log(error);
   }
