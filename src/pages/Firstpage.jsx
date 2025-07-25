@@ -1,25 +1,67 @@
-import { Instagram, Youtube, Play, Mail } from "lucide-react"
+import { motion } from "framer-motion";
+import { Instagram, Youtube, Play, Mail } from "lucide-react";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2, 
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 }, 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden"> 
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-gray-900">
+         
+          <motion.div
+            className="text-center mb-20"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={containerVariants}
+          >
+            <motion.h2
+              className="text-4xl md:text-6xl font-bold mb-4 text-gray-900"
+              variants={itemVariants}
+            >
               <span className="font-serif italic text-gray-500">Latest</span> & Greatest
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-600 max-w-2xl mx-auto"
+              variants={itemVariants}
+            >
               Stay connected and get your daily dose of fashion inspiration across all platforms.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          {/* Content Grid */}
-          <div className="grid lg:grid-cols-3 gap-8">
-
-            {/* Instagram Card */}
-            <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden">
+          
+          <motion.div
+            className="grid lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={containerVariants}
+          >
+            
+            <motion.div
+              className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden"
+              variants={itemVariants}
+            >
               <div className="p-6">
                 <div className="flex items-center mb-5">
                   <Instagram className="h-7 w-7 text-pink-500 mr-3" />
@@ -31,8 +73,6 @@ export default function HomePage() {
                       <img
                         src={`${i}`}
                         alt={`Instagram post ${i}`}
-                        width={150}
-                        height={150}
                         className="w-full h-full object-cover group-hover/image:scale-110 transition-transform duration-300"
                       />
                     </div>
@@ -42,10 +82,13 @@ export default function HomePage() {
                   @komalpandeyofficial
                 </button>
               </div>
-            </div>
+            </motion.div>
 
-            {/* YouTube Card */}
-            <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden">
+            
+            <motion.div
+              className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden"
+              variants={itemVariants}
+            >
               <div className="p-6">
                 <div className="flex items-center mb-5">
                   <Youtube className="h-7 w-7 text-red-600 mr-3" />
@@ -59,13 +102,7 @@ export default function HomePage() {
                   ].map((video, i) => (
                     <a href="#" key={i} className="flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-100 transition-colors group/video">
                       <div className="relative w-24 h-16 bg-gray-200 rounded-md overflow-hidden flex-shrink-0">
-                        <img
-                          src={video.src}
-                          alt={video.title}
-                          width={96}
-                          height={64}
-                          className="w-full h-full object-cover"
-                        />
+                        <img src={video.src} alt={video.title} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover/video:opacity-100 transition-opacity">
                           <Play className="h-6 w-6 text-white/80" fill="white" />
                         </div>
@@ -81,10 +118,13 @@ export default function HomePage() {
                   Watch More
                 </button>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Newsletter Card (Kept as a vibrant, contrasting element) */}
-            <div className="bg-gradient-to-br from-rose-500 to-amber-500 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-white flex flex-col p-6">
+            
+            <motion.div
+              className="bg-gradient-to-br from-rose-500 to-amber-500 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 text-white flex flex-col p-6"
+              variants={itemVariants}
+            >
               <h3 className="font-bold text-xl mb-2">Join the Style Revolution</h3>
               <p className="text-sm mb-6 text-rose-100 flex-grow">
                 Subscribe for styling tips, exclusive drops & behind-the-scenes fashion therapy.
@@ -102,11 +142,10 @@ export default function HomePage() {
                   Subscribe Now
                 </button>
               </form>
-            </div>
-
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>
-  )
+  );
 }

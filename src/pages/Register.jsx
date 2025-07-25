@@ -6,9 +6,35 @@ import { toast } from "react-toastify";
 import { asyncregisteruser } from "../store/actions/UserActions";
 import { useDispatch } from "react-redux";
 import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { motion } from "framer-motion";
+
+// Animation variants for a consistent look
+const containerVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+      staggerChildren: 0.08, // Stagger children for a cascade effect
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 const Register = () => {
-  // --- Your existing logic remains unchanged ---
   const {
     register,
     reset,
@@ -23,40 +49,37 @@ const Register = () => {
     userData.isAdmin = true;
     dispatch(asyncregisteruser(userData));
     reset();
-
     toast.success("Registration successful!", {
       position: "top-right",
       autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
     navigate("/login");
   };
 
-  // --- State for UI enhancements ---
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    // --- Premium & Modern UI ---
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md space-y-8 rounded-xl bg-white p-8 shadow-2xl md:p-10">
+      <motion.div
+        className="w-full max-w-md space-y-8 rounded-xl bg-white p-8 shadow-2xl md:p-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Header */}
-        <div className="text-center">
+        <motion.div className="text-center" variants={itemVariants}>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Create an Account
           </h2>
           <p className="mt-2 text-sm text-gray-500">
             Start your journey with us today.
           </p>
-        </div>
+        </motion.div>
 
         {/* Form */}
         <form onSubmit={handleSubmit(RegisterHandler)} className="space-y-6">
           {/* Username Input */}
-          <div>
+          <motion.div variants={itemVariants}>
             <label htmlFor="username" className="sr-only">Username</label>
             <div className="relative">
               <User className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -71,10 +94,10 @@ const Register = () => {
             {errors.username && (
               <p className="mt-1 text-xs text-red-600">{errors.username.message}</p>
             )}
-          </div>
+          </motion.div>
 
           {/* Email Input */}
-          <div>
+          <motion.div variants={itemVariants}>
             <label htmlFor="email" className="sr-only">Email</label>
             <div className="relative">
               <Mail className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -89,10 +112,10 @@ const Register = () => {
             {errors.email && (
               <p className="mt-1 text-xs text-red-600">{errors.email.message}</p>
             )}
-          </div>
+          </motion.div>
 
           {/* Password Input */}
-          <div>
+          <motion.div variants={itemVariants}>
             <label htmlFor="password" className="sr-only">Password</label>
             <div className="relative">
               <Lock className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -120,25 +143,27 @@ const Register = () => {
             {errors.password && (
               <p className="mt-1 text-xs text-red-600">{errors.password.message}</p>
             )}
-          </div>
+          </motion.div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="flex w-full justify-center rounded-lg border border-transparent bg-gray-900 py-3 px-4 text-sm font-medium tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-gray-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
-          >
-            CREATE ACCOUNT
-          </button>
+          <motion.div variants={itemVariants}>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-lg border border-transparent bg-gray-900 py-3 px-4 text-sm font-medium tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-gray-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2"
+            >
+              CREATE ACCOUNT
+            </button>
+          </motion.div>
         </form>
 
         {/* Footer Link */}
-        <p className="text-center text-sm text-gray-500">
+        <motion.p className="text-center text-sm text-gray-500" variants={itemVariants}>
           Already have an account?{" "}
           <NavLink to="/login" className="font-medium text-gray-800 hover:text-gray-500 transition-colors">
             Sign In
           </NavLink>
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
     </div>
   );
 };

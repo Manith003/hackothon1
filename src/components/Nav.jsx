@@ -4,175 +4,192 @@ import { useDispatch, useSelector } from "react-redux";
 import { asynclogoutuser } from "../store/actions/UserActions";
 import { toast } from "react-toastify";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Nav = () => {
-  const user = useSelector((state) => state.userReducer.users);
+  const { users: user } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const logoutHandler = () => {
     dispatch(asynclogoutuser());
-
     toast.success("Logout successful!", {
       position: "top-right",
       autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
-
     navigate("/");
     setIsMenuOpen(false);
   };
 
-  const MobileNavLink = ({ to, className, children }) => (
-    <NavLink to={to} className={className} onClick={() => setIsMenuOpen(false)}>
+
+  const MobileNavLink = ({ to, children }) => (
+    <NavLink to={to} onClick={() => setIsMenuOpen(false)}>
       {children}
     </NavLink>
   );
 
+  const menuVariants = {
+    hidden: { x: "100%" },
+    visible: { x: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+    exit: { x: "100%", transition: { duration: 0.3, ease: "easeInOut" } },
+  };
+
+  const linkVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const navLinks = [
+    { title: "Home", to: "/" },
+    { title: "Products", to: "/products" },
+    { title: "Inspiration", to: "/inspiration" },
+    { title: "About", to: "/about" },
+  ];
+
   return (
     <>
-      <nav
-        className="nav bg-[#fdfdfdf6] absolute top-0 w-full px-4 py-2 flex items-center justify-between 
-      border-b lg:px-6"
-      >
-        <div className="logo">
-          <NavLink to="/" className="text-black text-xl font-medium capitalize">
-            Komal Pandey
-          </NavLink>
-        </div>
-        <div className="nav-link hidden lg:flex justify-center items-center gap-10 cursor-pointer absolute left-[50%] -translate-x-[50%]">
-          {user ? (
-            <div className="flex items-center gap-5">
-              <NavLink
-                to="/"
-                className="text-black text-[0.95rem] font-medium uppercase"
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="/products"
-                className="text-black text-[0.95rem] font-medium uppercase"
-              >
-                Products
-              </NavLink>
-              <NavLink
-                to="/inspiration"
-                className="text-black text-[0.95rem] font-medium uppercase"
-              >
-                inspiration
-              </NavLink>
-              <NavLink
-                to="/about"
-                className="text-black text-[0.95rem] font-medium uppercase"
-              >
-                about
+      <nav className="absolute top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm">
+        <div className="w-7xl mx-auto py-3 sm:px-5 lg:px-8">
+          <div className="flex items-center justify-between px-4">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <NavLink to="/" className="text-2xl font-bold text-gray-900">
+                Komal Pandey
               </NavLink>
             </div>
-          ) : (
-            <NavLink
-              to="/"
-              className="text-black text-[0.95rem] font-medium uppercase"
-            >
-              Home
-            </NavLink>
-          )}
-        </div>
 
-        {/* Desktop Auth Buttons (now hidden on small screens) */}
-        <div className="hidden lg:flex gap-5">
-          {user ? (
-            <div className="flex gap-5 items-center text-black">
-              <NavLink to="/">{user.username}</NavLink>
+            {/* Desktop Nav Links */}
+            <div className="hidden lg:flex lg:items-center lg:space-x-8">
+              {user ? (
+                navLinks.map((link) => (
+                  <NavLink
+                    key={link.title}
+                    to={link.to}
+                    className="relative text-gray-700 hover:text-black transition-colors duration-300 group"
+                  >
+                    {link.title}
+                    <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                  </NavLink>
+                ))
+              ) : (
+                <NavLink
+                  to="/"
+                  className="relative text-gray-700 hover:text-black transition-colors duration-300 group"
+                >
+                  Home
+                  <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                </NavLink>
+              )}
+            </div>
+
+            {/* Desktop Auth Buttons */}
+            <div className="hidden lg:flex items-center space-x-5">
+              {user ? (
+                <>
+                  <span className="font-medium text-gray-800">
+                    {user.username}
+                  </span>
+                  <button
+                    onClick={logoutHandler}
+                    className="bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-transform hover:scale-105"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className="bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-transform hover:scale-105"
+                >
+                  Login
+                </NavLink>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden">
               <button
-                className="bg-neutral-800 text-white px-5 py-2 rounded-xl cursor-pointer"
-                onClick={logoutHandler}
+                onClick={() => setIsMenuOpen(true)}
+                className="text-gray-900"
               >
-                logout
+                <Menu className="h-7 w-7" />
               </button>
             </div>
-          ) : (
-            <NavLink to="/login" className="bg-neutral-800 text-white py-2 px-5 rounded-lg">
-              Login
-            </NavLink>
-          )}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden">
-          <button onClick={() => setIsMenuOpen(true)} className="text-black">
-            <Menu className="h-7 w-7" />
-          </button>
+          </div>
         </div>
       </nav>
 
-      <div
-        className={`fixed inset-0 z-50 bg-black text-white transform transition-transform duration-300 ease-in-out lg:hidden ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Close Button */}
-        <div className="flex justify-end p-5">
-          <button onClick={() => setIsMenuOpen(false)}>
-            <X className="h-8 w-8" />
-          </button>
-        </div>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="fixed inset-0 z-50 bg-gray-900 text-white flex flex-col items-center justify-center lg:hidden"
+          >
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-7 right-6 text-white"
+            >
+              <X className="h-8 w-8" />
+            </button>
+            <motion.nav
+              initial="hidden"
+              animate="visible"
+              transition={{ staggerChildren: 0.1 }}
+              className="flex flex-col items-center gap-8 text-center"
+            >
+              {user ? (
+                navLinks.map((link) => (
+                  <motion.div key={link.title} variants={linkVariants}>
+                    <MobileNavLink to={link.to}>
+                      <span className="text-3xl font-medium">{link.title}</span>
+                    </MobileNavLink>
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div variants={linkVariants}>
+                  <MobileNavLink to="/">
+                    <span className="text-3xl font-medium">Home</span>
+                  </MobileNavLink>
+                </motion.div>
+              )}
 
-        {/* Mobile Navigation Links */}
-        <nav className="flex flex-col items-center justify-center h-full -mt-20 gap-8">
-          {/* Using the exact same classes to preserve font size and weight */}
-          <MobileNavLink
-            to="/"
-            className="text-white text-[0.95rem] font-medium uppercase"
-          >
-            Home
-          </MobileNavLink>
-          <MobileNavLink
-            to="/products"
-            className="text-white text-[0.95rem] font-medium uppercase"
-          >
-            Products
-          </MobileNavLink>
-          <MobileNavLink
-            to="/inspiration"
-            className="text-white text-[0.95rem] font-medium uppercase"
-          >
-            inspiration
-          </MobileNavLink>
-          <MobileNavLink
-            to="/about"
-            className="text-white text-[0.95rem] font-medium uppercase"
-          >
-            about
-          </MobileNavLink>
-
-          {/* Mobile Auth Buttons */}
-          <div className="mt-8 flex flex-col items-center gap-6">
-            {user ? (
-              <div className="flex flex-col items-center gap-6 text-white">
-                <MobileNavLink to="/profile">{user.username}</MobileNavLink>
-                <button
-                  className="bg-white text-black px-5 py-2 rounded-xl cursor-pointer"
-                  onClick={logoutHandler}
-                >
-                  logout
-                </button>
+              {/* Mobile Auth Buttons */}
+              <div className="mt-10 flex flex-col items-center gap-6">
+                {user ? (
+                  <>
+                    <motion.div variants={linkVariants}>
+                      <span className="text-xl font-medium">
+                        {user.username}
+                      </span>
+                    </motion.div>
+                    <motion.div variants={linkVariants}>
+                      <button
+                        onClick={logoutHandler}
+                        className="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold"
+                      >
+                        Logout
+                      </button>
+                    </motion.div>
+                  </>
+                ) : (
+                  <motion.div variants={linkVariants}>
+                    <MobileNavLink to="/login">
+                      <span className="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold">
+                        Login
+                      </span>
+                    </MobileNavLink>
+                  </motion.div>
+                )}
               </div>
-            ) : (
-              <MobileNavLink
-                to="/login"
-                className="bg-white text-black py-2 px-5 rounded-lg"
-              >
-                Login
-              </MobileNavLink>
-            )}
-          </div>
-        </nav>
-      </div>
+            </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
