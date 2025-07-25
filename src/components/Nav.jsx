@@ -37,7 +37,7 @@ const Nav = () => {
   return (
     <>
       <nav
-        className="nav bg-[#f3f4f6e1] absolute top-0 w-full px-4 py-5 flex items-center justify-between
+        className="nav bg-[#fdfdfdf6] absolute top-0 w-full px-4 py-2 flex items-center justify-between 
       border-b lg:px-6"
       >
         <div className="logo">
@@ -89,14 +89,14 @@ const Nav = () => {
             <div className="flex gap-5 items-center text-black">
               <NavLink to="/">{user.username}</NavLink>
               <button
-                className="bg-neutral-700 text-white px-5 py-2 rounded-xl cursor-pointer"
+                className="bg-neutral-800 text-white px-5 py-2 rounded-xl cursor-pointer"
                 onClick={logoutHandler}
               >
                 logout
               </button>
             </div>
           ) : (
-            <NavLink to="/login" className="bg-white py-2 px-5 rounded-lg">
+            <NavLink to="/login" className="bg-neutral-800 text-white py-2 px-5 rounded-lg">
               Login
             </NavLink>
           )}

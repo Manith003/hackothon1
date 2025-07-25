@@ -103,7 +103,7 @@ const Hero = () => {
     return () => ctx.revert();
   }, [isFirstVisit]);
 
-  const counterValues = ["27", "65", "98", "99"];
+  const counterValues = ["00","27", "65", "98", "99"];
 
   return (
     <main ref={comp} className="w-screen h-dvh overflow-hidden font-gilroy">

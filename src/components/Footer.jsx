@@ -59,13 +59,13 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4 tracking-wider">Quick Links</h3>
             <div className="space-y-3">
-              <Link to="/products" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 Products & Services
               </Link>
-              <Link to="/about" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 About Komal
               </Link>
-              <Link to="/inspiration" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 Style Inspiration
               </Link>
               <Link to="/login" className="block text-gray-400 hover:text-white transition-colors">
@@ -78,16 +78,16 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4 tracking-wider">Services</h3>
             <div className="space-y-3">
-              <Link to="/products/1" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 Closet Therapy
               </Link>
-              <Link to="/products/3" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 Power Dressing 101
               </Link>
-              <Link to="/products/2" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 Bold is Beautiful
               </Link>
-              <Link to="/products" className="block text-gray-400 hover:text-white transition-colors">
+              <Link to="/" className="block text-gray-400 hover:text-white transition-colors">
                 View All Services
               </Link>
             </div>

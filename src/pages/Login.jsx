@@ -20,7 +20,7 @@ const Login = () => {
 
     toast.success("Login successful!", {
       position: "top-right",
-      autoClose: 500,
+      autoClose: 600,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -30,7 +30,7 @@ const Login = () => {
 
     setTimeout(() => {
       window.location.reload();
-    }, 500);
+    }, 600);
 
     navigate("/");
   };
