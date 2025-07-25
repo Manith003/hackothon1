@@ -8,6 +8,7 @@ import Products from '../pages/Product'
 import ProductDetailPage from '../pages/ProductDetail'
 import Inspiration from '../pages/Inspiration'
 import About from '../pages/About'
+import Pagenotfound from '../pages/Pagenotfound'
 
 const HomePage = () => {
   return (
@@ -31,6 +32,9 @@ const Mainroutes = () => {
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
+      <Route path="*" element={<Pagenotfound />} />
+
     </Routes>
   )
 }
