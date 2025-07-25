@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 const products = [
-  // ... (product data remains the same)
   {
     id: 1,
     name: "Closet Therapy",
@@ -138,7 +137,6 @@ export default function ProductsPage() {
   );
 }
 
-// The ProductGrid component remains unchanged
 function ProductGrid({ products }) {
   if (products.length === 0) {
     return (

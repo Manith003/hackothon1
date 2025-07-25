@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Animation variants for a consistent look
 const containerVariants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
@@ -17,7 +16,7 @@ const containerVariants = {
     transition: {
       duration: 0.4,
       ease: "easeOut",
-      staggerChildren: 0.08, // Stagger children for a cascade effect
+      staggerChildren: 0.08,
     },
   },
 };
@@ -66,7 +65,6 @@ const Register = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Header */}
         <motion.div className="text-center" variants={itemVariants}>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Create an Account
@@ -76,9 +74,7 @@ const Register = () => {
           </p>
         </motion.div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit(RegisterHandler)} className="space-y-6">
-          {/* Username Input */}
           <motion.div variants={itemVariants}>
             <label htmlFor="username" className="sr-only">Username</label>
             <div className="relative">
@@ -96,7 +92,6 @@ const Register = () => {
             )}
           </motion.div>
 
-          {/* Email Input */}
           <motion.div variants={itemVariants}>
             <label htmlFor="email" className="sr-only">Email</label>
             <div className="relative">
@@ -114,7 +109,6 @@ const Register = () => {
             )}
           </motion.div>
 
-          {/* Password Input */}
           <motion.div variants={itemVariants}>
             <label htmlFor="password" className="sr-only">Password</label>
             <div className="relative">
@@ -145,7 +139,6 @@ const Register = () => {
             )}
           </motion.div>
 
-          {/* Submit Button */}
           <motion.div variants={itemVariants}>
             <button
               type="submit"
@@ -156,7 +149,6 @@ const Register = () => {
           </motion.div>
         </form>
 
-        {/* Footer Link */}
         <motion.p className="text-center text-sm text-gray-500" variants={itemVariants}>
           Already have an account?{" "}
           <NavLink to="/login" className="font-medium text-gray-800 hover:text-gray-500 transition-colors">

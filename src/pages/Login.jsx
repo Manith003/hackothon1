@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Animation variants for the container and its items
+
 const containerVariants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
@@ -16,7 +16,7 @@ const containerVariants = {
     transition: {
       duration: 0.4,
       ease: "easeOut",
-      staggerChildren: 0.1, // Animate children one by one
+      staggerChildren: 0.1,
     },
   },
 };
@@ -60,7 +60,7 @@ const Login = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Header */}
+
         <motion.div className="text-center" variants={itemVariants}>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Welcome Back!
@@ -70,9 +70,7 @@ const Login = () => {
           </p>
         </motion.div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit(loginHandler)} className="space-y-6">
-          {/* Username Input */}
           <motion.div variants={itemVariants}>
             <label htmlFor="username" className="sr-only">
               Username
@@ -94,7 +92,6 @@ const Login = () => {
             )}
           </motion.div>
 
-          {/* Password Input */}
           <motion.div variants={itemVariants}>
             <label htmlFor="password" className="sr-only">
               Password
@@ -133,7 +130,6 @@ const Login = () => {
             )}
           </motion.div>
 
-          {/* Submit Button */}
           <motion.div variants={itemVariants}>
             <button
               type="submit"

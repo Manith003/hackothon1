@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Heart, Bookmark, Share2 } from "lucide-react";
 
-// Reverted to the vibrant, colorful theme for each mood
 const moods = [
   {
     name: "All",
@@ -116,7 +115,6 @@ export default function InspirationPage() {
   return (
     <div className="min-h-screen bg-[#F3F4F6] py-20 font-sans mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
             <span className="font-serif italic text-gray-500">Style</span>{" "}
@@ -130,7 +128,6 @@ export default function InspirationPage() {
           </p>
         </div>
 
-        {/* Mood Categories */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
           {moods.map((mood) => (
             <button
@@ -157,7 +154,6 @@ export default function InspirationPage() {
           ))}
         </div>
 
-        {/* Looks Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredLooks.map((look) => {
             const moodStyle = moods.find((m) => m.name === look.mood);
@@ -183,7 +179,6 @@ export default function InspirationPage() {
                   <div className="absolute bottom-4 left-4 right-4 text-white translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                     <div className="flex items-center justify-end">
                       <div className="flex space-x-2">
-                        {/* Action Buttons */}
                         <button className="h-8 w-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border-0 transition-transform hover:scale-110">
                           <Heart className="h-4 w-4" />
                         </button>
@@ -220,7 +215,6 @@ export default function InspirationPage() {
           })}
         </div>
 
-        {/* CTA Section */}
         <div className="text-center mt-20">
           <div className="bg-neutral-900 text-white rounded-xl shadow-2xl">
             <div className="p-12">

@@ -27,7 +27,6 @@
   src: url("/pp-editorial-old/ppeditorialold-regular.otf") format("opentype");
 }
 
-/* Reset default styles */
 * {
   margin: 0;
   padding: 0;

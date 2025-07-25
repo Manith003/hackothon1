@@ -28,10 +28,9 @@ const Hero = () => {
   }, []);
 
   useLayoutEffect(() => {
-    // A more robust way to select elements for GSAP
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        delay: isFirstVisit ? 0.3 : 0, // Only delay if first visit
+        delay: isFirstVisit ? 0.3 : 0, 
         defaults: {
           ease: "hop",
         },

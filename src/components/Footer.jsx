@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"; // Changed from 'next/link' for React Router
+import { Link } from "react-router-dom"; 
 import { Instagram, Youtube, Twitter, Mail, Sparkles } from "lucide-react";
 
 export default function Footer() {
@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
+     
           <div className="space-y-4">
             <Link to="/" className="inline-flex items-center space-x-2">
               <span className="text-2xl font-bold">
@@ -55,7 +55,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+
           <div>
             <h3 className="font-bold text-lg mb-4 tracking-wider">Quick Links</h3>
             <div className="space-y-3">
@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services */}
+
           <div>
             <h3 className="font-bold text-lg mb-4 tracking-wider">Services</h3>
             <div className="space-y-3">
@@ -93,7 +93,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Newsletter */}
+    
           <div>
             <h3 className="font-bold text-lg mb-4 tracking-wider">Stay Updated</h3>
             <p className="text-gray-400 mb-4">Get the latest styling tips and exclusive content.</p>

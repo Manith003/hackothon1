@@ -13,7 +13,7 @@ import {
   ShoppingBag
 } from "lucide-react";
 
-// --- Mock Data ---
+
 const allProducts = [
   {
     id: 1,
@@ -233,7 +233,7 @@ const allProducts = [
   },
 ]
 
-// Helper function to get the correct enrollment/purchase metric
+
 const getMetric = (product) => {
     if (product.students) return { value: product.students, label: 'students' };
     if (product.clients) return { value: product.clients, label: 'clients' };
@@ -270,7 +270,6 @@ export default function ProductDetailPage() {
             </Link>
         </div>
       
-        {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6 flex flex-col justify-center">
             <span className="inline-block w-fit-content rounded-full px-4 py-1.5 text-sm font-semibold text-white bg-gray-900">
@@ -320,7 +319,6 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* What's Included */}
         <div className="mb-16 bg-white border border-gray-200/80 rounded-2xl shadow-lg">
           <div className="p-8">
             <h2 className="text-2xl font-bold mb-6 flex items-center text-gray-800">
@@ -338,7 +336,6 @@ export default function ProductDetailPage() {
           </div>
         </div>
         
-        {/* Testimonials */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">What Our Community Says</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -359,7 +356,6 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Final CTA Section */}
         <div className="text-center rounded-2xl bg-white border border-gray-200/80 p-12">
             <h2 className="text-3xl font-bold mb-4 text-gray-900">Ready to Transform Your Style?</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">

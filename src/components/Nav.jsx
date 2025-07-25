@@ -52,14 +52,13 @@ const Nav = () => {
       <nav className="absolute top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm">
         <div className="w-7xl mx-auto py-3 sm:px-5 lg:px-8">
           <div className="flex items-center justify-between px-4">
-            {/* Logo */}
             <div className="flex-shrink-0">
               <NavLink to="/" className="text-2xl font-bold text-gray-900">
                 Komal Pandey
               </NavLink>
             </div>
 
-            {/* Desktop Nav Links */}
+            {/* for desktop nav links */}
             <div className="hidden lg:flex lg:items-center lg:space-x-8">
               {user ? (
                 navLinks.map((link) => (
@@ -83,7 +82,7 @@ const Nav = () => {
               )}
             </div>
 
-            {/* Desktop Auth Buttons */}
+            {/* for desktop auth buttons */}
             <div className="hidden lg:flex items-center space-x-5">
               {user ? (
                 <>
@@ -107,7 +106,7 @@ const Nav = () => {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* mobile menu button */}
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(true)}
@@ -120,7 +119,7 @@ const Nav = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* mobile menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -158,7 +157,7 @@ const Nav = () => {
                 </motion.div>
               )}
 
-              {/* Mobile Auth Buttons */}
+              {/* mobile auth buttons */}
               <div className="mt-10 flex flex-col items-center gap-6">
                 {user ? (
                   <>
